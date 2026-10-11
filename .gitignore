@@ -1,0 +1,11 @@
+# Local dependencies and transient packaging files
+node_modules/
+.sites-runtime/
+.sites-checkout/
+*.tar.gz
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
