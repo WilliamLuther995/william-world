@@ -2,6 +2,8 @@
 :root{--bg:#101514;--ivory:#e6e3ce;--muted:#8e978e;--light:#f2f0d4;--glow:#d3d9a8;--ink:#090e0b;--welcome:#dcd9bf;--secondary:#b7b9a4;--detail:#798277;--world-bg:#141c18;--world-accent:#aeb89b;--orb:#758066}
 :root[data-theme="ember"]{--bg:#1c1010;--ivory:#edd2bd;--muted:#af8e80;--light:#ffc295;--glow:#f06436;--ink:#170909;--welcome:#f3c2a3;--secondary:#cc9d87;--detail:#aa8171;--world-bg:#221311;--world-accent:#d99d7d;--orb:#b45d38}
 body{background:var(--bg)}
+.autumn-leaves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.leaves-far{z-index:-2}.leaves-middle{z-index:2}.leaves-near{z-index:7}
 .vignette{background:radial-gradient(ellipse at 50% 46%,transparent 20%,color-mix(in srgb,var(--ink) 76%,transparent) 90%)}
 .small-dot{color:var(--secondary)}
 .edition,.quiet,.eyebrow{color:var(--muted)}

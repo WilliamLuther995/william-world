@@ -161,8 +161,10 @@ let w,h,frame=0,anim;
 const motes=Array.from({length:45},() => ({x:Math.random(),y:Math.random(),r:Math.random()*1.2+.25,s:Math.random()*.12+.02}));
 function resize() {
   const d=Math.min(devicePixelRatio||1,1.5); w=innerWidth; h=innerHeight;
-  canvas.width=w*d; canvas.height=h*d; ctx.setTransform(d,0,0,d,0,0); if(reduced.matches) draw();
+  canvas.width=w*d; canvas.height=h*d; ctx.setTransform(d,0,0,d,0,0);
+  autumnLeaves.resize(w,h);
   updateTitleMask();
+  if(reduced.matches) draw();
 }
 addEventListener('resize',resize);
 function draw() {
@@ -183,6 +185,7 @@ function draw() {
   const elapsed=performance.now()-startTime;
   if(!reduced.matches && elapsed>=4000 && elapsed<=8800 && intro.classList.contains('running')) pose(elapsed-4000);
   drawFootDust(elapsed);
+  autumnLeaves.draw(performance.now(),reduced.matches);
   if(!reduced.matches && !document.hidden) anim=requestAnimationFrame(draw);
 }
 document.addEventListener('visibilitychange',() => { if(document.hidden) cancelAnimationFrame(anim); else if(!intro.hidden) draw(); });
