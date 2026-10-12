@@ -8,14 +8,15 @@
   <title>WILLIAM · 欢迎光临我的世界</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="experience.css">
+  <link rel="stylesheet" href="weather-panel.css">
 </head>
 <body>
   <main>
     <section class="intro" aria-label="WILLIAM 开场动画">
       <canvas id="atmosphere" aria-hidden="true"></canvas>
-      <canvas class="autumn-leaves leaves-far" data-depth="far" aria-hidden="true"></canvas>
-      <canvas class="autumn-leaves leaves-middle" data-depth="middle" aria-hidden="true"></canvas>
-      <canvas class="autumn-leaves leaves-near" data-depth="near" aria-hidden="true"></canvas>
+      <canvas class="weather-particles particles-far" data-depth="far" aria-hidden="true"></canvas>
+      <canvas class="weather-particles particles-middle" data-depth="middle" aria-hidden="true"></canvas>
+      <canvas class="weather-particles particles-near" data-depth="near" aria-hidden="true"></canvas>
       <div class="grain" aria-hidden="true"></div>
       <div class="vignette" aria-hidden="true"></div>
       <header><div class="brand-controls"><span class="wordmark">W<span class="small-dot">.</span></span><label class="language"><span class="sr-only" data-i18n="language">Language</span><select class="language-select" aria-label="Language"><option value="en">EN</option><option value="zh">中文</option><option value="ja">日本語</option></select></label></div><span class="edition" data-i18n="universe">A PERSONAL UNIVERSE</span><button id="skip" class="quiet"><span data-i18n="skip">Skip intro</span> ↗</button></header>
@@ -38,7 +39,9 @@
       <div class="world-content"><span class="eyebrow" data-i18n="chapter">CHAPTER ONE · THE BEGINNING</span><h2><span data-i18n="worldTitle">A world,</span><br><em data-i18n="worldTitleSub">beginning here.</em></h2><p><span data-i18n="worldBody">You've stepped into WILLIAM's world.</span><br><span data-i18n="worldBodySub">The next story is slowly taking shape.</span></p><button id="return" class="world-return"><span data-i18n="replay">Replay intro</span> ↗</button></div><div class="orb" aria-hidden="true"></div><footer><span>WILLIAM · <span data-i18n="universe">A PERSONAL UNIVERSE</span></span><span data-i18n="continued">TO BE CONTINUED</span></footer>
     </section>
   </main>
-  <script src="autumn.js"></script>
+  <script src="effects.js"></script>
+  <script src="weather.js"></script>
   <script src="app.js"></script>
+  <script src="weather-panel.js"></script>
 </body>
 </html>

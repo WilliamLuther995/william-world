@@ -44,6 +44,7 @@ function setLanguage(code) {
   document.title = `WILLIAM · ${copy.welcome}`;
   document.querySelector('meta[name="description"]').content = `WILLIAM · ${copy.welcome}. ${copy.dream}`;
   savePreference('william-language', language);
+  dispatchEvent(new CustomEvent('william:languagechange',{detail:{language}}));
 }
 document.querySelectorAll('.language-select').forEach(el => el.addEventListener('change', e => setLanguage(e.target.value)));
 const palettes = {
@@ -78,7 +79,7 @@ function go() {
     intro.hidden=true; world.hidden=false; cancelAnimationFrame(anim); document.querySelector('#back').focus({preventScroll:true});
   },reduced.matches ? 0 : 850);
 }
-intro.addEventListener('click',e => { if(!e.target.closest('header,footer')) go(); });
+intro.addEventListener('click',e => { if(!e.target.closest('header,footer,.weather-panel')) go(); });
 enter.addEventListener('click',go);
 document.querySelector('#skip').addEventListener('click',() => { intro.classList.remove('running'); finish(); enter.focus(); });
 document.querySelector('#replay').addEventListener('click',start);
@@ -162,7 +163,7 @@ const motes=Array.from({length:45},() => ({x:Math.random(),y:Math.random(),r:Mat
 function resize() {
   const d=Math.min(devicePixelRatio||1,1.5); w=innerWidth; h=innerHeight;
   canvas.width=w*d; canvas.height=h*d; ctx.setTransform(d,0,0,d,0,0);
-  autumnLeaves.resize(w,h);
+  weatherSystem.resize(w,h);
   updateTitleMask();
   if(reduced.matches) draw();
 }
@@ -185,10 +186,11 @@ function draw() {
   const elapsed=performance.now()-startTime;
   if(!reduced.matches && elapsed>=4000 && elapsed<=8800 && intro.classList.contains('running')) pose(elapsed-4000);
   drawFootDust(elapsed);
-  autumnLeaves.draw(performance.now(),reduced.matches);
+  weatherSystem.draw(performance.now(),reduced.matches);
   if(!reduced.matches && !document.hidden) anim=requestAnimationFrame(draw);
 }
 document.addEventListener('visibilitychange',() => { if(document.hidden) cancelAnimationFrame(anim); else if(!intro.hidden) draw(); });
 reduced.addEventListener('change',() => { if(reduced.matches) { intro.classList.remove('running'); finish(); } draw(); });
+siteEffects.subscribe(({id})=>{if(id==='weather')draw();});
 resize(); pose(0); setLanguage(readPreference('william-language','en')); setPalette(readPreference('william-palette','ember')); start();
 document.fonts.ready.then(updateTitleMask);
