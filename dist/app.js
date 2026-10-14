@@ -67,6 +67,7 @@ function finish() {
 function start() {
   clearTimeout(timer); clearTimeout(transitionTimer); ready=false; leaving=false;
   world.hidden=true; intro.hidden=false; intro.classList.remove('ready','running','leaving');
+  window.scrollTo({top:0,behavior:'instant'});
   welcome.setAttribute('aria-hidden','true'); enter.disabled=true; document.querySelector('#skip').hidden=false;
   dust.length=0; lastStep=-1;
   void intro.offsetWidth; startTime=performance.now(); intro.classList.add('running'); updateTitleMask();
@@ -83,7 +84,7 @@ intro.addEventListener('click',e => { if(!e.target.closest('header,footer,.weath
 enter.addEventListener('click',go);
 document.querySelector('#skip').addEventListener('click',() => { intro.classList.remove('running'); finish(); enter.focus(); });
 document.querySelector('#replay').addEventListener('click',start);
-for(const id of ['back','return']) document.querySelector('#'+id).addEventListener('click',() => { start(); document.querySelector('#skip').focus(); });
+for(const id of ['back','return']) document.querySelector('#'+id).addEventListener('click',() => { start(); document.querySelector(reduced.matches?'#enter':'#skip').focus({preventScroll:true}); });
 
 // Continuous articulated stride: opposing arms/legs, knee recovery, soft double bounce.
 const limbs = Object.fromEntries(['leg-rear','leg-front','boot-rear','boot-front','arm-rear','arm-front','boy-pose','scarf'].map(id => [id,document.getElementById(id)]));
@@ -158,7 +159,7 @@ function drawFootDust(elapsed) {
   }
   dustCtx.globalAlpha=1;
 }
-let w,h,frame=0,anim;
+let w,h,anim,lastFrameTime=0,atmosphereTime=0;
 const motes=Array.from({length:45},() => ({x:Math.random(),y:Math.random(),r:Math.random()*1.2+.25,s:Math.random()*.12+.02}));
 function resize() {
   const d=Math.min(devicePixelRatio||1,1.5); w=innerWidth; h=innerHeight;
@@ -170,8 +171,11 @@ function resize() {
 addEventListener('resize',resize);
 function draw() {
   cancelAnimationFrame(anim); if(intro.hidden) return;
-  frame++; const colors=palettes[palette]; ctx.fillStyle=colors.base; ctx.fillRect(0,0,w,h);
-  const t=reduced.matches?0:frame*.0015;
+  const now=performance.now(),dt=lastFrameTime?Math.min((now-lastFrameTime)/1000,.05):1/60;
+  lastFrameTime=now;
+  if(!reduced.matches) atmosphereTime+=dt;
+  const colors=palettes[palette]; ctx.fillStyle=colors.base; ctx.fillRect(0,0,w,h);
+  const t=reduced.matches?0:atmosphereTime*.09;
   for(let i=0;i<7;i++) {
     const x=w*(.12+i*.14)+Math.sin(t+i*2)*w*.12,y=h*(.38+Math.sin(t*.5+i)*.14);
     const g=ctx.createRadialGradient(x,y,0,x,y,w*.35);
@@ -180,7 +184,7 @@ function draw() {
   const glow=ctx.createRadialGradient(w*.5,h*.47,0,w*.5,h*.47,w*.48);
   glow.addColorStop(0,colors.glow); glow.addColorStop(1,'#00000000'); ctx.fillStyle=glow; ctx.fillRect(0,0,w,h);
   for(const p of motes) {
-    if(!reduced.matches) { p.x+=p.s/w; p.y-=.025/h; if(p.x>1)p.x=0; if(p.y<0)p.y=1; }
+    if(!reduced.matches) { p.x+=p.s*dt*60/w; p.y-=1.5*dt/h; if(p.x>1)p.x=0; if(p.y<0)p.y=1; }
     ctx.beginPath(); ctx.arc(p.x*w,p.y*h,p.r,0,Math.PI*2); ctx.fillStyle=colors.mote; ctx.fill();
   }
   const elapsed=performance.now()-startTime;
@@ -189,7 +193,7 @@ function draw() {
   weatherSystem.draw(performance.now(),reduced.matches);
   if(!reduced.matches && !document.hidden) anim=requestAnimationFrame(draw);
 }
-document.addEventListener('visibilitychange',() => { if(document.hidden) cancelAnimationFrame(anim); else if(!intro.hidden) draw(); });
+document.addEventListener('visibilitychange',() => { lastFrameTime=0; if(document.hidden) cancelAnimationFrame(anim); else if(!intro.hidden) draw(); });
 reduced.addEventListener('change',() => { if(reduced.matches) { intro.classList.remove('running'); finish(); } draw(); });
 siteEffects.subscribe(({id})=>{if(id==='weather')draw();});
 resize(); pose(0); setLanguage(readPreference('william-language','en')); setPalette(readPreference('william-palette','ember')); start();

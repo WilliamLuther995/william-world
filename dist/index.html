@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="experience.css">
   <link rel="stylesheet" href="weather-panel.css">
+  <link rel="stylesheet" href="atelier.css">
 </head>
 <body>
   <main>
@@ -19,6 +20,7 @@
       <canvas class="weather-particles particles-near" data-depth="near" aria-hidden="true"></canvas>
       <div class="grain" aria-hidden="true"></div>
       <div class="vignette" aria-hidden="true"></div>
+      <div class="cinema-frame" aria-hidden="true"></div>
       <header><div class="brand-controls"><span class="wordmark">W<span class="small-dot">.</span></span><label class="language"><span class="sr-only" data-i18n="language">Language</span><select class="language-select" aria-label="Language"><option value="en">EN</option><option value="zh">中文</option><option value="ja">日本語</option></select></label></div><span class="edition" data-i18n="universe">A PERSONAL UNIVERSE</span><button id="skip" class="quiet"><span data-i18n="skip">Skip intro</span> ↗</button></header>
       <div class="scene">
         <div class="eyebrow" data-i18n="dream">SOMEWHERE BETWEEN DREAM & REALITY</div>
@@ -36,12 +38,32 @@
     </section>
     <section class="world" hidden aria-label="我的世界">
       <header><div class="brand-controls"><span class="wordmark">W.</span><label class="language"><span class="sr-only" data-i18n="language">Language</span><select class="language-select" aria-label="Language"><option value="en">EN</option><option value="zh">中文</option><option value="ja">日本語</option></select></label></div><button id="back" class="quiet"><span data-i18n="back">Back to the prologue</span> ↗</button></header>
-      <div class="world-content"><span class="eyebrow" data-i18n="chapter">CHAPTER ONE · THE BEGINNING</span><h2><span data-i18n="worldTitle">A world,</span><br><em data-i18n="worldTitleSub">beginning here.</em></h2><p><span data-i18n="worldBody">You've stepped into WILLIAM's world.</span><br><span data-i18n="worldBodySub">The next story is slowly taking shape.</span></p><button id="return" class="world-return"><span data-i18n="replay">Replay intro</span> ↗</button></div><div class="orb" aria-hidden="true"></div><footer><span>WILLIAM · <span data-i18n="universe">A PERSONAL UNIVERSE</span></span><span data-i18n="continued">TO BE CONTINUED</span></footer>
+      <div class="world-grain" aria-hidden="true"></div>
+      <div class="world-content">
+        <span class="eyebrow"><span class="status-dot" aria-hidden="true"></span> <span data-i18n="chapter">CHAPTER ONE · THE BEGINNING</span></span>
+        <h2><span data-i18n="worldTitle">A little wonder.</span><br><em data-i18n="worldTitleSub">A world of my own.</em></h2>
+        <p class="world-description" data-i18n="worldBody">Somewhere between what is real and what could be. A small place for light, passing seasons, and the stories still taking shape.</p>
+        <a class="explore-link" href="#explore"><span data-i18n="explore">Explore the collection</span><span aria-hidden="true">↓</span></a>
+        <div class="world-index"><span>01 — 03</span><span data-i18n="indexLabel">THREE SMALL WORLDS, ONE OPEN DOOR</span></div>
+      </div>
+      <div class="celestial" aria-hidden="true"><div class="celestial-orbit orbit-one"></div><div class="celestial-orbit orbit-two"></div><div class="celestial-sun"></div><span class="orbit-dot"></span><span class="celestial-caption">W. / 01</span><div class="celestial-cross cross-one">+</div><div class="celestial-cross cross-two">+</div></div>
+      <section id="explore" class="collection" aria-labelledby="collection-title">
+        <div class="collection-heading"><div><span class="eyebrow" data-i18n="collectionLabel">AN ATLAS OF SMALL WONDERS</span><h3 id="collection-title" data-i18n="collectionTitle">Things worth slowing down for.</h3></div><span class="collection-note" data-i18n="collectionNote">Three visual studies. Open one, stay a while.</span></div>
+        <div class="study-grid">
+          <button class="study-card" data-study="light" aria-haspopup="dialog"><span class="study-art art-light" aria-hidden="true"><span class="art-disc"></span><span class="art-line"></span><span class="art-caption">FIG. 01 / LUMEN</span></span><span class="study-meta"><span>01 / <span data-i18n="lightCategory">LIGHT</span></span><span aria-hidden="true">↗</span></span><span class="study-title" data-i18n="lightTitle">Where the light stays.</span><span class="study-description" data-i18n="lightDescription">A quiet glow, on the edge of evening.</span></button>
+          <button class="study-card" data-study="rain" aria-haspopup="dialog"><span class="study-art art-rain" aria-hidden="true"><span class="rain-window"></span><span class="rain-reflection"></span><span class="art-caption">FIG. 02 / PLUVIA</span></span><span class="study-meta"><span>02 / <span data-i18n="rainCategory">RAIN</span></span><span aria-hidden="true">↗</span></span><span class="study-title" data-i18n="rainTitle">Notes from a rainy day.</span><span class="study-description" data-i18n="rainDescription">Let the outside world become a little softer.</span></button>
+          <button class="study-card" data-study="snow" aria-haspopup="dialog"><span class="study-art art-snow" aria-hidden="true"><span class="snow-moon"></span><span class="snow-hill hill-back"></span><span class="snow-hill hill-front"></span><span class="snow-star">✦</span><span class="art-caption">FIG. 03 / NIX</span></span><span class="study-meta"><span>03 / <span data-i18n="snowCategory">WINTER</span></span><span aria-hidden="true">↗</span></span><span class="study-title" data-i18n="snowTitle">A letter from winter.</span><span class="study-description" data-i18n="snowDescription">A little distance. A little room to dream.</span></button>
+        </div>
+        <div class="collection-end"><span class="end-star" aria-hidden="true">✳</span><p data-i18n="closing">There is no hurry here.<br>Every world begins with a little wonder.</p><button id="return" class="quiet"><span data-i18n="replay">Replay intro</span> ↺</button></div>
+      </section>
+      <footer class="world-footer"><span>WILLIAM · <span data-i18n="universe">A PERSONAL UNIVERSE</span></span><span data-i18n="footerNote">MADE OF LITTLE MOMENTS</span></footer>
     </section>
   </main>
+  <dialog id="study-dialog" aria-labelledby="study-dialog-title"><div class="dialog-top"><span class="eyebrow" data-i18n="dialogLabel">A VISUAL STUDY</span><button class="dialog-close" aria-label="Close" data-i18n-label="close">×</button></div><div class="dialog-art" aria-hidden="true"></div><div class="dialog-copy"><span class="eyebrow dialog-number"></span><h2 id="study-dialog-title"></h2><p class="dialog-poem"></p><span class="dialog-footnote" data-i18n="studyNote">An imaginative scene, created for this little world.</span></div></dialog>
   <script src="effects.js"></script>
   <script src="weather.js"></script>
   <script src="app.js"></script>
   <script src="weather-panel.js"></script>
+  <script src="atelier.js"></script>
 </body>
 </html>
