@@ -9,3 +9,9 @@ node_modules/
 !.env.example
 .DS_Store
 Thumbs.db
+
+# Never commit personal bookmark exports, caches, or local data.
+private-data/
+favorites*.html
+bookmarks-export*.html
+bookmarks-export*.json

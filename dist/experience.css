@@ -1,6 +1,8 @@
 /* Theme layer: sage preserves the original palette, ember is the active experiment. */
 :root{--bg:#101514;--ivory:#e6e3ce;--muted:#8e978e;--light:#f2f0d4;--glow:#d3d9a8;--ink:#090e0b;--welcome:#dcd9bf;--secondary:#b7b9a4;--detail:#798277;--world-bg:#141c18;--world-accent:#aeb89b;--orb:#758066}
 :root[data-theme="ember"]{--bg:#1c1010;--ivory:#edd2bd;--muted:#af8e80;--light:#ffc295;--glow:#f06436;--ink:#170909;--welcome:#f3c2a3;--secondary:#cc9d87;--detail:#aa8171;--world-bg:#221311;--world-accent:#d99d7d;--orb:#b45d38}
+:root[data-theme="crimson"]{--bg:#210912;--ivory:#f4d6df;--muted:#b88e9e;--light:#ffb4c8;--glow:#c63d60;--ink:#14050d;--welcome:#f0c0cf;--secondary:#d5a5b5;--detail:#b8889b;--world-bg:#290d18;--world-accent:#d77894;--orb:#a32a50}
+:root[data-theme="sky"]{color-scheme:light;--bg:#e6f1fa;--ivory:#203d52;--muted:#507389;--light:#254f70;--glow:#83b9d9;--ink:#c3d9eb;--welcome:#284e69;--secondary:#426880;--detail:#55798f;--world-bg:#dcecf7;--world-accent:#367798;--orb:#7aaec9}
 body{background:var(--bg)}
 .weather-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .particles-far{z-index:-2}.particles-middle{z-index:2}.particles-near{z-index:7}

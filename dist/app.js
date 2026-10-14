@@ -10,7 +10,7 @@ const translations = {
     prologue:'THE PROLOGUE', replay:'Replay intro', wonder:'EVERY WORLD BEGINS WITH A LITTLE WONDER.', back:'Back to the prologue',
     chapter:'CHAPTER ONE · THE BEGINNING', worldTitle:'A world,', worldTitleSub:'beginning here.',
     worldBody:'You\'ve stepped into WILLIAM’s world.', worldBodySub:'The next story is slowly taking shape.', continued:'TO BE CONTINUED',
-    palette:'Color palette', sage:'Original · sage and yellow', ember:'Ember · orange and red', introLabel:'WILLIAM opening animation', worldLabel:'My world'
+    palette:'Color palette', sage:'Original · sage and yellow', ember:'Ember · orange and red', crimson:'Deep red', sky:'Light blue', bookmarks:'Bookmark library', introLabel:'WILLIAM opening animation', worldLabel:'My world'
   },
   zh: {
     language:'语言', universe:'一个属于我的世界', skip:'跳过序幕', dream:'在梦境与现实之间',
@@ -18,7 +18,7 @@ const translations = {
     prologue:'序幕', replay:'重播序幕', wonder:'每一个世界，都始于一点好奇。', back:'返回序幕',
     chapter:'第一章 · 开始', worldTitle:'世界，', worldTitleSub:'从这里开始。',
     worldBody:'你已经走进 WILLIAM 的世界。', worldBodySub:'下一段故事，正在慢慢生长。', continued:'未完待续',
-    palette:'配色方案', sage:'初始配色 · 青黄', ember:'实验配色 · 橙红', introLabel:'WILLIAM 开场动画', worldLabel:'我的世界'
+    palette:'配色方案', sage:'初始配色 · 青黄', ember:'实验配色 · 橙红', crimson:'深红', sky:'浅蓝', bookmarks:'收藏夹图书馆', introLabel:'WILLIAM 开场动画', worldLabel:'我的世界'
   },
   ja: {
     language:'言語', universe:'私だけの世界', skip:'イントロをスキップ', dream:'夢と現実のあいだに',
@@ -26,7 +26,7 @@ const translations = {
     prologue:'プロローグ', replay:'もう一度見る', wonder:'すべての世界は、小さな好奇心から。', back:'プロローグへ戻る',
     chapter:'第一章 · はじまり', worldTitle:'世界は、', worldTitleSub:'ここから始まる。',
     worldBody:'WILLIAM の世界へようこそ。', worldBodySub:'次の物語が、ゆっくりと育っています。', continued:'つづく',
-    palette:'カラーパレット', sage:'初期カラー · 青と黄', ember:'新しいカラー · オレンジと赤', introLabel:'WILLIAM オープニングアニメーション', worldLabel:'私の世界'
+    palette:'カラーパレット', sage:'初期カラー · 青と黄', ember:'新しいカラー · オレンジと赤', crimson:'深い赤', sky:'ライトブルー', bookmarks:'ブックマークライブラリ', introLabel:'WILLIAM オープニングアニメーション', worldLabel:'私の世界'
   }
 };
 function readPreference(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch { return fallback; } }
@@ -49,7 +49,9 @@ function setLanguage(code) {
 document.querySelectorAll('.language-select').forEach(el => el.addEventListener('change', e => setLanguage(e.target.value)));
 const palettes = {
   sage: { base:'#111816', fog:['#8491810b','#acb0950d','#73847308'], glow:'#e9e7ba0d', mote:'#cbd3b529', meta:'#101514' },
-  ember: { base:'#211211', fog:['#bc5e350f','#de8b5814','#a943300b'], glow:'#ff945520', mote:'#ffd0aa30', meta:'#1c1010' }
+  ember: { base:'#211211', fog:['#bc5e350f','#de8b5814','#a943300b'], glow:'#ff945520', mote:'#ffd0aa30', meta:'#1c1010' },
+  crimson: { base:'#210912', fog:['#891e3a16','#b63c5912','#63203c12'], glow:'#d544641b', mote:'#f6bbc92c', meta:'#210912' },
+  sky: { base:'#e6f1fa', fog:['#8cb9d52a','#b9dbef30','#7ca6c120'], glow:'#ffffff70', mote:'#25476140', meta:'#e6f1fa' }
 };
 let palette = 'ember';
 function setPalette(name) {

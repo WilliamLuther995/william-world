@@ -21,11 +21,11 @@
   });
   renderers.set('rain',(ctx,p,size,time,config,plane)=>{
     const length=size*8, angle=Math.atan2(config.wind,config.speed)*.7;
-    ctx.rotate(-angle); ctx.strokeStyle='#d8dce0';ctx.lineWidth=Math.max(.5,size*.13);
+    ctx.rotate(-angle); ctx.strokeStyle=document.documentElement.dataset.theme==='sky'?'#416d8c':'#d8dce0';ctx.lineWidth=Math.max(.5,size*.13);
     ctx.beginPath();ctx.moveTo(0,-length*.5);ctx.lineTo(0,length*.5);ctx.stroke();
   });
   renderers.set('snow',(ctx,p,size)=>{
-    ctx.fillStyle='#f4eee7';ctx.beginPath();ctx.arc(0,0,size*.48,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=document.documentElement.dataset.theme==='sky'?'#638ca6':'#f4eee7';ctx.beginPath();ctx.arc(0,0,size*.48,0,Math.PI*2);ctx.fill();
   });
   function registerPreset(id,definition) {
     if(presets.has(id) || !renderers.has(definition.kind)) throw new Error(`Invalid weather preset: ${id}`);
